@@ -1,6 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using BalabolaBot.Configuration;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.ConfigureServices(builder.Configuration);
+
+var app = builder.Build();
+await app.Services.ConfigureBotAsync(app.Configuration);
+
+app.UseRouting();
+app.MapControllers();
 
 app.Run();
