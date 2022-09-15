@@ -16,4 +16,9 @@ public class Bot
         Client = new TelegramBotClient(token);
         commands = ReflectiveEnumerator.GetEnumerableOfType<Command>().ToList();
     }
+
+    public async Task SetWebHookAsync(string hook)
+    {
+        await Client.SetWebhookAsync(hook);
+    }
 }
