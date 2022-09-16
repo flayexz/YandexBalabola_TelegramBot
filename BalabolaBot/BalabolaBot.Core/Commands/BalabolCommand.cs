@@ -38,19 +38,20 @@ public class BalabolCommand : Command
         text = string.Empty;
 
         var splittedMessage = message.Split(" ");
-
-        switch (splittedMessage.Length)
+        var splittedMessageLength = splittedMessage.Length;
+        
+        switch (splittedMessageLength)
         {
             case < 2:
                 return false;
             case < 3:
-                var possibleTheme = splittedMessage[2];
+                var possibleTheme = splittedMessage.Last();
                 if (!int.TryParse(possibleTheme, out var result)) return false;
                 theme = (BalabolaTheme)result;
                 break;
         }
         
-        text = splittedMessage[1];
+        text = string.Join(" ", splittedMessage.Skip(1).Take(splittedMessageLength - 1));
         return true;
     }
 }
