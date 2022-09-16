@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 .idea
 .idea/*
+**/appsettings.Development.json
+**/appsettings.json
