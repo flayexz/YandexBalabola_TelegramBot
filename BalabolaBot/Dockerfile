@@ -6,6 +6,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["BalabolaBot/BalabolaBot.csproj", "BalabolaBot/"]
+COPY ["BalabolaBot.Core/BalabolaBot.Core.csproj", "BalabolaBot.Core/"]
+COPY ["BalabolaBot.Infrastructure/BalabolaBot.Infrastructure.csproj", "BalabolaBot.Infrastructure/"]
 RUN dotnet restore "BalabolaBot/BalabolaBot.csproj"
 COPY . .
 WORKDIR "/src/BalabolaBot"
