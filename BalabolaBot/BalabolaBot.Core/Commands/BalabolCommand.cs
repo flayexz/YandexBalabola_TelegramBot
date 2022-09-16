@@ -38,14 +38,19 @@ public class BalabolCommand : Command
         text = string.Empty;
 
         var splittedMessage = message.Split(" ");
-        if (splittedMessage.Length < 3)
-            return false;
 
-        var possibleTheme = splittedMessage[1];
-        if (!int.TryParse(possibleTheme, out var result)) return false;
-
-        theme = (BalabolaTheme)result;
-        text = splittedMessage[2];
+        switch (splittedMessage.Length)
+        {
+            case < 2:
+                return false;
+            case < 3:
+                var possibleTheme = splittedMessage[2];
+                if (!int.TryParse(possibleTheme, out var result)) return false;
+                theme = (BalabolaTheme)result;
+                break;
+        }
+        
+        text = splittedMessage[1];
         return true;
     }
 }
